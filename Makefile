@@ -1,4 +1,4 @@
-.PHONY: up down logs restart ingest query test
+.PHONY: up down logs restart ingest serve query test
 
 up:
 	docker compose up -d
@@ -18,9 +18,12 @@ status:
 ingest:
 	python -m src.ingestion.run
 
+serve:
+	uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+
 query:
 	@read -p "Question: " q; \
-	curl -s -X POST http://localhost:8000/query \
+	curl -s -X POST http://localhost:8000/api/v1/query \
 		-H "Content-Type: application/json" \
 		-d "{\"question\": \"$$q\"}" | python -m json.tool
 

@@ -150,3 +150,34 @@ services:
     networks:
       - dataops-network
     restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dataops-app
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      # Same reasoning as data-generator: .env's *_HOST values target the
+      # host-exposed ports, but this container must reach services by name.
+      POSTGRES_HOST: postgres
+      MONGO_HOST: mongo
+      QDRANT_HOST: qdrant
+      NEO4J_URI: bolt://neo4j:7687
+      SEAWEEDFS_HOST: seaweedfs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_healthy
+    networks:
+      - dataops-network
+    restart: unless-stopped
