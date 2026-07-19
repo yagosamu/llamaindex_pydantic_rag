@@ -20,3 +20,4 @@ docker-compose.override.yml
 *.parquet
 *.csv
 !docs/**/*.csv
+/docs
