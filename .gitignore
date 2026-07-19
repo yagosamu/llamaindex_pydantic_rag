@@ -20,6 +20,7 @@ docker-compose.override.yml
 *.parquet
 *.csv
 !docs/**/*.csv
+!infra/**/*.csv
 /docs
 /prompts
 /sketch
