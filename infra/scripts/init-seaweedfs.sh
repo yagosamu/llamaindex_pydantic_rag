@@ -14,4 +14,10 @@ done
 # Create bucket via S3 API
 aws --endpoint-url http://seaweedfs:8333 s3 mb s3://dataops-lake 2>/dev/null || true
 
+# Upload seed governance documents so the ingestion pipeline (Memory engine)
+# has real unstructured docs to index.
+if [ -d /docs ]; then
+    aws --endpoint-url http://seaweedfs:8333 s3 cp /docs s3://dataops-lake/docs/ --recursive
+fi
+
 echo "SeaweedFS bucket 'dataops-lake' ready."

@@ -16,7 +16,7 @@ status:
 	docker compose ps
 
 ingest:
-	python -m src.ingestion.pipeline
+	python -m src.ingestion.run
 
 query:
 	@read -p "Question: " q; \
