@@ -21,3 +21,5 @@ docker-compose.override.yml
 *.csv
 !docs/**/*.csv
 /docs
+/prompts
+/sketch

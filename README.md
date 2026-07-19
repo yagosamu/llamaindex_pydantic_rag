@@ -20,3 +20,7 @@ make up
 
 LlamaIndex | Pydantic | FastAPI | PostgreSQL | Qdrant | Neo4j | SeaweedFS | Docker
 
+---
+
+*Part of the Intelligent DataOps Platform 
+
