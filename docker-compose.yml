@@ -125,3 +125,28 @@ services:
     restart: "no"
     networks:
       - dataops-network
+
+  data-generator:
+    build:
+      context: ./generator
+      dockerfile: Dockerfile
+    container_name: dataops-data-generator
+    env_file: .env
+    environment:
+      GENERATOR_INTERVAL_SECONDS: 30
+      # .env's *_HOST values are meant for host-machine tools connecting via
+      # exposed ports (localhost) — inside the compose network we must use
+      # the service names instead.
+      POSTGRES_HOST: postgres
+      MONGO_HOST: mongo
+      SEAWEEDFS_HOST: seaweedfs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_healthy
+    networks:
+      - dataops-network
+    restart: unless-stopped
