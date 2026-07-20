@@ -4,8 +4,7 @@
 
 RAG multi-fonte que roteia cada pergunta para a base mais adequada a respondê-la —
 fatos exatos para SQL, busca semântica para o vetorial, relações para o grafo.
-Construído com **LlamaIndex** e **Pydantic** durante minha especialização em
-AI Data Engineer.
+Construído com **LlamaIndex** e **Pydantic**.
 
 ## Por que três bases?
 
@@ -75,9 +74,3 @@ make serve               # FastAPI em http://localhost:8000/docs
 make query               # faz uma pergunta pelo terminal
 ```
 
-## Notas
-
-Construído durante minha especialização em AI Data Engineer como estudo prático de
-padrões de RAG em produção. Os dados são sintéticos (gerados com Faker); o foco foi
-implementar a recuperação multi-fonte de ponta a ponta — os três engines do
-LlamaIndex, o roteador `SubQuestionQueryEngine`, e a exposição por REST e MCP.

@@ -2,7 +2,7 @@
 
 **English** · [Português](README.pt-br.md)
 
-A multi-source RAG that routes each question to the store best suited to answer it —
+A multi-source RAG that routes each question to the store best suited to answer it -
 exact facts to SQL, semantic search to a vector store, relationships to a graph.
 Built with **LlamaIndex** and **Pydantic** during my AI Data Engineer specialization.
 
@@ -20,7 +20,7 @@ the engine built for it:
 
 A **`SubQuestionQueryEngine`** sits on top: it decomposes a cross-domain question into
 sub-questions, routes each to the right engine, and merges the results. Every LLM
-output is coerced into a **typed Pydantic schema** — no raw strings.
+output is coerced into a **typed Pydantic schema** - no raw strings.
 
 > **One question, all three stores:**
 > *"Which enterprise customers spent over R$50k, had pipeline incidents, and what
@@ -73,10 +73,3 @@ make ingest              # index the sample data into the stores
 make serve               # FastAPI at http://localhost:8000/docs
 make query               # ask a question from the terminal
 ```
-
-## Notes
-
-Built during my AI Data Engineer specialization as a hands-on study of production RAG
-patterns. Data is synthetic (Faker-generated); the focus was implementing multi-store
-retrieval end-to-end — the three LlamaIndex engines, the `SubQuestionQueryEngine`
-router, and exposing it through both REST and MCP.
