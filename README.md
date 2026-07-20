@@ -52,10 +52,11 @@ Served two ways: a **FastAPI** REST endpoint and an **MCP server**, so any MCP h
 
 **REST API (FastAPI) and an interactive query (Swagger):**
 
-![FastAPI](assets/fast_api.png)
 ![Swagger query](assets/swagger.png)
+![FastAPI](assets/fast_api.png)
 
-**MCP server — the same RAG answering inside Claude, grounded in the project's data:**
+
+**MCP server - the same RAG answering inside Claude, grounded in the project's data:**
 
 ![MCP query 1](assets/mcp-1.png)
 ![MCP query 2](assets/mcp-2.png)
