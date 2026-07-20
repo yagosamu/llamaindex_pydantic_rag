@@ -52,10 +52,11 @@ qualquer host MCP (incluindo o Claude) consuma como ferramenta.
 
 **API REST (FastAPI) e uma consulta interativa (Swagger):**
 
-![FastAPI](assets/fast_api.png)
 ![Consulta no Swagger](assets/swagger.png)
+![FastAPI](assets/fast_api.png)
 
-**MCP server — o mesmo RAG respondendo dentro do Claude, com base nos dados do projeto:**
+
+**MCP server - o mesmo RAG respondendo dentro do Claude, com base nos dados do projeto:**
 
 ![Consulta MCP 1](assets/mcp-1.png)
 ![Consulta MCP 2](assets/mcp-2.png)
