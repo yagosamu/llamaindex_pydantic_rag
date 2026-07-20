@@ -8,6 +8,7 @@ from llama_index.core.query_engine import NLSQLTableQueryEngine
 from llama_index.llms.openai import OpenAI
 from sqlalchemy import create_engine
 
+from src.engines._text import clean_llm_text
 from src.engines.config import EngineConfig
 from src.schemas.query import LedgerQueryResult
 
@@ -85,7 +86,7 @@ class LedgerEngine:
 
         return LedgerQueryResult(
             sql_query_executed=sql_query,
-            summary=str(response),
+            summary=clean_llm_text(str(response)),
             row_count=len(data_points),
             data_points=data_points,
         )

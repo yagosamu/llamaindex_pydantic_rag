@@ -16,6 +16,7 @@ from typing import Literal, Optional
 from llama_index.llms.openai import OpenAI
 from pydantic import BaseModel
 
+from src.engines._text import clean_llm_text
 from src.engines.brain import BrainEngine
 from src.engines.config import EngineConfig
 from src.engines.ledger import LedgerEngine
@@ -156,7 +157,7 @@ class RouterEngine:
         formatted = "\n".join(f"- [{sd.source}] {sd.result_summary}" for sd in source_details)
         prompt = SYNTHESIS_PROMPT.replace("__QUESTION__", question).replace("__RESULTS__", formatted)
         response = await self.llm.acomplete(prompt)
-        return response.text.strip()
+        return clean_llm_text(response.text.strip())
 
     async def _do_query(
         self, question: str, sources: Optional[list[str]]

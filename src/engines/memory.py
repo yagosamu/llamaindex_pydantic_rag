@@ -9,6 +9,7 @@ from llama_index.llms.openai import OpenAI
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from qdrant_client import AsyncQdrantClient, QdrantClient
 
+from src.engines._text import clean_llm_text
 from src.engines.config import EngineConfig
 from src.schemas.query import MemoryQueryResult
 
@@ -78,7 +79,7 @@ class MemoryEngine:
         confidence = sum(scores) / len(scores) if scores else 0.0
 
         return MemoryQueryResult(
-            summary=str(response),
+            summary=clean_llm_text(str(response)),
             sources=list(dict.fromkeys(sources)),
             confidence=min(max(confidence, 0.0), 1.0),
             relevant_facts=relevant_facts,

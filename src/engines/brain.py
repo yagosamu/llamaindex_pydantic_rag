@@ -16,6 +16,7 @@ from neo4j import AsyncGraphDatabase
 from neo4j.exceptions import Neo4jError
 from neo4j.graph import Node, Path, Relationship
 
+from src.engines._text import clean_llm_text
 from src.engines.config import EngineConfig
 from src.schemas.domain import DependencyChain
 from src.schemas.query import BrainQueryResult
@@ -102,7 +103,7 @@ class BrainEngine:
             "If the results are empty, say so plainly."
         )
         response = await self.llm.acomplete(prompt)
-        return response.text.strip()
+        return clean_llm_text(response.text.strip())
 
     @staticmethod
     def _flatten_graph_objects(value: Any) -> list:
