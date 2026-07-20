@@ -1,4 +1,4 @@
-.PHONY: up down logs restart ingest serve query test
+.PHONY: up down logs restart ingest serve query test test-integration test-all
 
 up:
 	docker compose up -d
@@ -28,4 +28,10 @@ query:
 		-d "{\"question\": \"$$q\"}" | python -m json.tool
 
 test:
-	pytest tests/ -v
+	pytest tests/unit -v
+
+test-integration:
+	pytest tests/integration -v --timeout=120
+
+test-all:
+	pytest tests/ -v --timeout=120

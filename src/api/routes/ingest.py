@@ -27,7 +27,7 @@ async def _run_ingestion() -> None:
     logger.info("background ingestion complete: %d nodes indexed", len(nodes))
 
 
-@router.post("/ingest")
+@router.post("/ingest", status_code=202)
 async def trigger_ingestion(background_tasks: BackgroundTasks) -> dict:
     """Trigger a re-ingestion of all data sources into the Memory engine.
 

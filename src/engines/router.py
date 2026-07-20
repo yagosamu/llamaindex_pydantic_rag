@@ -104,8 +104,8 @@ class RouterEngine:
         try:
             plan = SubQuestionPlan.model_validate_json(text)
         except Exception as exc:
-            logger.warning("Router classification failed to parse (%s); falling back to memory-only", exc)
-            return [SubQuestionItem(engine="memory", question=question)]
+            logger.warning("Router classification failed to parse (%s); falling back to all engines", exc)
+            return [SubQuestionItem(engine=name, question=question) for name in ENGINE_NAMES]
         return plan.sub_questions[:3]
 
     async def _run_engine(self, engine_name: str, question: str):
